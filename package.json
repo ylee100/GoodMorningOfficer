@@ -16,7 +16,5 @@
     "url": "https://github.com/ylee100/GoodMorningOfficer/issues"
   },
   "homepage": "https://github.com/ylee100/GoodMorningOfficer#readme",
-  "dependencies": {
-    "pixi.js": "^4.7.0"
-  }
+  "dependencies": {}
 }
