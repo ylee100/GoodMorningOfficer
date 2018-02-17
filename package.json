@@ -16,5 +16,7 @@
     "url": "https://github.com/ylee100/GoodMorningOfficer/issues"
   },
   "homepage": "https://github.com/ylee100/GoodMorningOfficer#readme",
-  "dependencies": {}
+  "dependencies": {
+    "socket.io": "^2.0.4"
+  }
 }
