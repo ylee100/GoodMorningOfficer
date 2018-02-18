@@ -48,10 +48,10 @@ exports.on_connect = function (socket) {
   socket.on('movex', function (data) {
     players[data.username].vx = data.v;
     socket.broadcast.emit('movex', data);
-  }
+  });
 
   socket.on('movey', function (data) {
     players[data.username].vy = data.v;
     socket.broadcast.emit('movey', data);
-  }
+  });
 }
