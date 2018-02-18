@@ -36,7 +36,6 @@ setInterval(function(){
 
 
 exports.sync_players = function (io) {
-  console.log('Syncing players.');
   io.local.emit('players', players);
 }
 
