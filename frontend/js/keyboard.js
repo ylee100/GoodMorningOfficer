@@ -170,6 +170,9 @@ function gameLoop(delta){
 }
 
 function play(delta){
+  // Do not play until user is defined.
+  if (user === undefined) return;
+
   clueCollected();
   collision();
   // other players move (position)
