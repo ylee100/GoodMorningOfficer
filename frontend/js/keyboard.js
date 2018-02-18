@@ -63,7 +63,7 @@ function collision(){
         }
 
         // bribery
-        if(user.rank > players[i].rank)){
+        if(user.rank > players[i].rank){
           user.credit += 10*(user.rank - players[i].rank);
           players[i].credit -= 10*(user.rank - players[i].rank);
         } else if(user.rank < players[i].rank){
@@ -85,7 +85,7 @@ function generateClue(player1, player2){
   p1.position.set(user.x, user.y+bunny.height);
   app.stage.addChild(p1);
   p2 = new PIXI.Text(player2);
-  p1.position.set(user.x+p2.width, user.y+bunny.height);
+  p2.position.set(user.x+p1.width, user.y+bunny.height);
   app.stage.addChild(p2);
 
   // center the sprite's anchor point
@@ -337,14 +337,7 @@ function syncPlayers(newPlayers){
 
     // Find user.
     if (players[i].username === username) {
-      if (!user) {
-        // If user was not defined before,
-        // Start game.
-        user = players[i];
-        loadSprite();
-      } else {
-        user = players[i];
-      }
+      user = players[i];
     }
   }
 }
