@@ -325,7 +325,7 @@ function syncPlayers(newPlayers){
 
   for(var i in players){
     // Create new sprites.
-    if (user) {
+    if (user !== undefined) {
       players[i].sprite = new PIXI.Sprite(
         PIXI.loader.resources["res/rank" + players[i].rank + ".png"].texture
       );
