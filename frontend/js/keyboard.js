@@ -81,7 +81,7 @@ function collision(){
   // TODO: server update
 }
 function generateClue(player1, player2){
-  var bunny = new Sprite(resources["res/clue.png"].texture);
+  var bunny = new PIXI.Sprite(resources["res/clue.png"].texture);
   bunny.anchor.set(0.5);
   bunny.position.set(user.x, user.y)
   bunny.scale = new PIXI.Point(0.4, 0.4);
