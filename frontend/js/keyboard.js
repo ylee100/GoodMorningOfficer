@@ -73,7 +73,9 @@ function collision(){
           players[i].credit += 10*(user.rank - players[i].rank);
         }
 
-        generateClue(players[i].username, user.username, user.x, user.y);
+        var temp_x = user.x;
+        var temp_y = user.y;
+        generateClue(players[i].username, user.username, temp_x, temp_y);
       }
     }
   }
@@ -89,13 +91,14 @@ function generateClue(player1, player2, temp_x, temp_y){
   bunnies.push(bunny);
   app.stage.addChild(bunny);
 
-
+/**
   p1 = new PIXI.Text(player1);
   p1.position.set(bunny.x, bunny.y+bunny.height);
   app.stage.addChild(p1);
   p2 = new PIXI.Text(player2);
   p2.position.set(bunny.x+p1.width, bunny.y+bunny.height);
   app.stage.addChild(p2);
+  */
 
   // center the sprite's anchor point
 
@@ -108,6 +111,7 @@ function clueCollected(){
         if(hitTest(user.sprite, bunnies[i])){
           app.stage.removeChild(bunnies[i]);
           bunnies[i] = undefined;
+          /*
           if(p1 !== user.username){
             user.clue.push(p1);
           }
@@ -116,6 +120,7 @@ function clueCollected(){
           }
           app.stage.removeChild(p1);
           app.stage.removeChild(p2);
+          */
         }
       }
   }
