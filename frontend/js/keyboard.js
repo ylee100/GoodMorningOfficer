@@ -73,17 +73,18 @@ function collision(){
           players[i].credit += 10*(user.rank - players[i].rank);
         }
 
-        generateClue(players[i].username, user.username);
+        generateClue(players[i].username, user.username, user.x, user.y);
       }
     }
   }
 
   // TODO: server update
 }
-function generateClue(player1, player2){
+
+function generateClue(player1, player2, temp_x, temp_y){
   var bunny = new PIXI.Sprite(PIXI.loader.resources["res/clue.png"].texture);
   bunny.anchor.set(0.5);
-  bunny.position.set(user.x, user.y)
+  bunny.position.set(temp_x, temp_y);
   bunny.scale = new PIXI.Point(0.4, 0.4);
   bunnies.push(bunny);
   app.stage.addChild(bunny);
