@@ -1,12 +1,7 @@
 user = {};
 function clickme(){
-  createStage();
-  loadSprite();
-
-  var me = document.getElementById("userinput").value;
-
   // Initialize the user
-  user.username = me;
+  user.username = document.getElementById("userinput").value;
   user.rank = 1;
   user.x = 0;   // global x
   user.y = 0;   // global y
@@ -14,4 +9,7 @@ function clickme(){
   user.clue = {};
 
   document.getElementById("userform").remove();
+
+  createStage();
+  loadSprite();
 }
