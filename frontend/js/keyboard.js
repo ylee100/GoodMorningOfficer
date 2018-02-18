@@ -62,6 +62,9 @@ function play(delta){
 
   // Credits Change
   msg_credit.text = "Money: " + user.credit;
+  if(user.rank < 1 || user.credit < 0){
+    state = end;
+  }
 
   // TODO: clue is also moving
 
@@ -195,9 +198,7 @@ function setup(){
   */
 
   state = play;
-  if(user.rank < 1 || user.credit < 0){
-    state = end;
-  }
+
 
   app.ticker.add(delta => gameLoop(delta));
 /*
