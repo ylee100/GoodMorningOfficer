@@ -329,6 +329,15 @@ function syncPlayers(newPlayers){
     app.stage.addChild(players[i].sprite);
 
     // Find user.
-    if (players[i].username === username) user = players[i];
+    if (players[i].username === username) {
+      if (!user) {
+        // If user was not defined before,
+        // Start game.
+        user = players[i];
+        loadSprite();
+      } else {
+        user = players[i];
+      }
+    }
   }
 }
