@@ -52,6 +52,12 @@ function gameLoop(delta){
 
 function play(delta){
   // other players move (position)
+    for(var i in players){
+      if(players[i] != user){
+        players[i].sprite.x -= user.sprite.vx;
+        players[i].sprite.y -= user.sprite.vy;
+      }
+    }
 
 }
 
@@ -108,12 +114,35 @@ function initKey(sprite){
 }
 
 let state;
-
 function setup(){
   // load fininsh for image
   // TODO: JSON from server
   players = {
-    "Alice": user
+    "Alice": user,
+    "Bob": {
+      username : "Bob",
+      rank : 1,
+      x : 100,   // global x
+      y : 100,   // global y
+      credit : 100,
+      clue : {}
+    },
+    "Coco": {
+      username : "Bob",
+      rank : 1,
+      x : 800,   // global x
+      y : 100,   // global y
+      credit : 100,
+      clue : {}
+    },
+    "David": {
+      username : "Bob",
+      rank : 1,
+      x : -400,   // global x
+      y : 300,   // global y
+      credit : 100,
+      clue : {}
+    }
   };
 
   for(var i in players){
@@ -125,10 +154,14 @@ function setup(){
 
     players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
 
-    app.stage.addChild(players[i].sprite);
+    players[i].sprite.vx = 0;
+    players[i].sprite.vy = 0;
 
+    app.stage.addChild(players[i].sprite);
   }
+
   initKey(user.sprite);
+
 
   state = play;
 

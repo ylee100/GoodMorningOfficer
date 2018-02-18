@@ -12,4 +12,6 @@ function clickme(){
   user.y = 0;   // global y
   user.credit = 100;
   user.clue = {};
+
+  document.getElementById("userform").remove();
 }
