@@ -12,4 +12,4 @@ setInterval(() => game.sync_players(io), 100);
 
 app.use(express.static('frontend'));
 
-server.listen(port, ()=>console.log('Example app listening on port 3000'));
+server.listen(port, ()=>console.log('Example app listening on port ' + port));
