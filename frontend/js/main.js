@@ -18,7 +18,7 @@ function createStage(){
   app.renderer.view.style.position = "absolute";
   app.renderer.autoResize = true;
   window.onresize = resizeGame;
-  window.onload = resizeGame;
+  resizeGame();
 
   document.body.appendChild(app.view);
 
