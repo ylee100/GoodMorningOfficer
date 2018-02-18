@@ -13,7 +13,7 @@ function instantiate_player(username) {
   p.vy = 0;
   p.rank = 1;
   p.credit = 100;
-  p.clue = 0;
+  p.clue = [];
 
   // Put the new player into dictionary.
   if (players[username] !== undefined) {
