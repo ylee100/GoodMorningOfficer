@@ -135,7 +135,7 @@ function setup(){
   app.stage.addChild(gameOverScene);
 
   gameOverScene.visible = false;
-  let gameOverStyle = new TextStyle({
+  let gameOverStyle = new PIXI.TextStyle({
     fontFamily: "Futura",
     fontSize: 64,
     fill: "white"
