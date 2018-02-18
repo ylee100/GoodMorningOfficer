@@ -113,11 +113,29 @@ function initKey(){
   };
 }
 
+function end() {
+  gameOverScene.visible = true;
+}
+
 
 let state;
 function setup(){
   // load fininsh for image
   // TODO: JSON from server
+
+  gameOverScene = new Container();
+  app.stage.addChild(gameOverScene);
+
+  gameOverScene.visible = false;
+  let gameOverStyle = new TextStyle({
+    fontFamily: "Futura",
+    fontSize: 64,
+    fill: "white"
+  });
+  message = new Text("The End!", gameOverStyle);
+  message.x = 120;
+  message.y = app.stage.height / 2 - 32;
+  gameOverScene.addChild(message);
 
 
   let style = new PIXI.TextStyle({
@@ -166,6 +184,9 @@ function setup(){
   */
 
   state = play;
+  if(user.rank < 1 || user.credit < 0){
+    state = end;
+  }
 
   app.ticker.add(delta => gameLoop(delta));
 /*
