@@ -160,22 +160,32 @@ function setup(){
     app.stage.addChild(players[i].sprite);
   }
 
+  let style = new PIXI.TextStyle({
+    fontFamily: "Arial",
+    fontSize: 36,
+    fill: "white",
+    stroke: '#ff3300',
+    strokeThickness: 4,
+  });
 
-  let msg_credit = new PIXI.Text("Money: " + user.credit);
+  // prints out the values
+  let msg_credit = new PIXI.Text("Money: " + user.credit, style);
   app.stage.addChild(msg_credit);
   msg_credit.position = "absolute";
   msg_credit.position.set(user.x, user.y);
 
-  let msg_clue = new PIXI.Text("Clue - ");
+  let msg_clue = new PIXI.Text("Clue - ", style);
   app.stage.addChild(msg_clue);
   msg_clue.position = "absolute";
-  msg_clue.position.set(user.x, user.y+30);
+  msg_clue.position.set(user.x, user.y+40);
   for(var i in user.clue){
-    let temp_clue = new PIXI.Text(i + ": " + user.clue[i]);
+    let temp_clue = new PIXI.Text(i + ": " + user.clue[i], style);
     app.stage.addChild(temp_clue);
     temp_clue.position = "absolute";
-    temp_clue.position.set(user.x+(i * 10), user.y+30);
+    temp_clue.position.set(user.x+(i * 15), user.y+40);
   }
+
+
 
   initKey(user.sprite);
 
