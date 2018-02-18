@@ -30,6 +30,10 @@ function remove_player(username) {
   }
 }
 
+exports.sync_players = function (io) {
+  io.local.emit('players', players);
+}
+
 exports.on_connect = function (socket) {
   socket.emit('log', 'Connection successful!');
 

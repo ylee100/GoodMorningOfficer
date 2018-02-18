@@ -7,6 +7,7 @@ const io = require('socket.io')(server, {
 const game = require('./game-server.js');
 
 io.on('connection', game.on_connect);
+setInterval(() => game.sync_players(io), 100);
 
 app.use(express.static('frontend'));
 
