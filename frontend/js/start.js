@@ -10,6 +10,8 @@ function clickme(){
 
   document.getElementById("userform").remove();
 
+  request_new_user(user.username);
+
   createStage();
   loadSprite();
 }
