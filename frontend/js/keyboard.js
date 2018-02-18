@@ -81,7 +81,13 @@ function collision(){
   // TODO: server update
 }
 function generateClue(player1, player2){
-  var bunny = PIXI.Sprite.fromImage('res/clue.png')
+  var bunny = PIXI.Sprite.fromImage('res/clue.png');
+  bunny.anchor.set(0.5);
+  bunny.position.set(user.x, user.y)
+  bunny.scale = new PIXI.Point(0.4, 0.4);
+  bunnies.push(bunny);
+  app.stage.addChild(bunny);
+
 
   p1 = new PIXI.Text(player1);
   p1.position.set(user.x, user.y+bunny.height);
@@ -91,11 +97,6 @@ function generateClue(player1, player2){
   app.stage.addChild(p2);
 
   // center the sprite's anchor point
-  bunny.anchor.set(0.5);
-  bunny.position.set(user.x, user.y)
-  bunny.scale = new PIXI.Point(0.4, 0.4);
-  bunnies.push(bunny);
-  app.stage.addChild(bunny);
 
   app.ticker.add(function(delta){
     bunny.rotation += 0.1 * delta;
@@ -103,16 +104,18 @@ function generateClue(player1, player2){
 }
 
 function clueCollected(){
-  if(hitTest(user.sprite, bunny)){
-    app.stage.removeChild(bunny);
-    if(p1 !== user.username){
-      user.clue.push(p1);
+  if(bunny !== undefined){
+    if(hitTest(user.sprite, bunny)){
+      app.stage.removeChild(bunny);
+      if(p1 !== user.username){
+        user.clue.push(p1);
+      }
+      if(p2 !== user.username){
+        user.clue.push(p2);
+      }
+      app.stage.removeChild(p1);
+      app.stage.removeChild(p2);
     }
-    if(p2 !== user.username){
-      user.clue.push(p2);
-    }
-    app.stage.removeChild(p1);
-    app.stage.removeChild(p2);
   }
 }
 
