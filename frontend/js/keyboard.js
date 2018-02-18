@@ -258,6 +258,7 @@ function end() {
   app.stage.removeChild(user.sprite);
   user = {};
   gameOverScene.visible = true;
+  app.renderer.backgroundColor = 0x000000;
 }
 
 
@@ -275,9 +276,9 @@ function setup(){
     fontSize: 64,
     fill: "white"
   });
-  message = new PIXI.Text("GameOver", gameOverStyle);
-  message.x = 120;
-  message.y = app.stage.height / 2 - 32;
+  message = new PIXI.Text("Game Over", gameOverStyle);
+  message.x = app.stage.width / 2;
+  message.y = app.stage.height / 2;
   gameOverScene.addChild(message);
 
 
