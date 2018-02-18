@@ -8,7 +8,7 @@ const game = require('./game-server.js');
 const port = process.env.PORT || 3000;
 
 io.on('connection', game.on_connect);
-setInterval(() => game.sync_players(io), 1000);
+setInterval(() => game.sync_players(io), 100);
 
 app.use(express.static('frontend'));
 
