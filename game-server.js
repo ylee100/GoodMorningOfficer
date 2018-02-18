@@ -31,5 +31,11 @@ function remove_player(username) {
 }
 
 exports.on_connect = function (socket) {
-  socket.emit('connection', 'Connection successful!');
+  socket.emit('log', 'Connection successful!');
+
+  socket.on('newuser', function (data) {
+    if (instantiate_player(data)) {
+      console.log('A new user ' + data + ' is created.');
+    }
+  });
 }
