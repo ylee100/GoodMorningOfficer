@@ -325,11 +325,13 @@ function syncPlayers(newPlayers){
 
   for(var i in players){
     // Create new sprites.
-    players[i].sprite = new PIXI.Sprite(
-      PIXI.loader.resources["res/rank" + players[i].rank + ".png"].texture
-    );
-    players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
-    app.stage.addChild(players[i].sprite);
+    if (user) {
+      players[i].sprite = new PIXI.Sprite(
+        PIXI.loader.resources["res/rank" + players[i].rank + ".png"].texture
+      );
+      players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
+      app.stage.addChild(players[i].sprite);
+    }
 
 /**
     nametag = new PIXI.Text(players[i].username);
