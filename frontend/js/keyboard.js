@@ -131,7 +131,7 @@ function setup(){
   // load fininsh for image
   // TODO: JSON from server
 
-  gameOverScene = new Container();
+  gameOverScene = new PIXI.Container();
   app.stage.addChild(gameOverScene);
 
   gameOverScene.visible = false;
@@ -140,7 +140,7 @@ function setup(){
     fontSize: 64,
     fill: "white"
   });
-  message = new Text("The End!", gameOverStyle);
+  message = new PIXI.Text("The End!", gameOverStyle);
   message.x = 120;
   message.y = app.stage.height / 2 - 32;
   gameOverScene.addChild(message);
