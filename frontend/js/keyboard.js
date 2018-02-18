@@ -59,6 +59,9 @@ function play(delta){
       }
     }
 
+    // TODO: clue is also moving
+
+
 }
 
 // PIXI.Sprite sprite
@@ -190,9 +193,30 @@ function setup(){
   initKey(user.sprite);
 
 
+ /*
+  var bunny = PIXI.Sprite.fromImage('res/clue.png')
+
+  // center the sprite's anchor point
+  bunny.anchor.set(0.5);
+
+  // move the sprite to the center of the screen
+  bunny.x = app.screen.width / 2 + 200;
+  bunny.y = app.screen.height / 2;
+
+  bunny.scale = new PIXI.Point(0.4, 0.4);
+
+  app.stage.addChild(bunny);
+
+  */
+
   state = play;
 
   app.ticker.add(delta => gameLoop(delta));
+/*
+  app.ticker.add(function(delta){
+    bunny.rotation += 0.1 * delta;
+  });
+  */
 }
 
 function loadSprite(){
