@@ -32,7 +32,13 @@ setInterval(function(){
   }
 }, 1000);
 
-
+// Move players every tick.
+setInterval(function(){
+  for (var i in players){
+    players[i].x += players[i].vx;
+    players[i].y += players[i].vy;
+  }
+}, 1000/60);
 
 
 exports.sync_players = function (io) {

@@ -173,10 +173,10 @@ function play(delta){
   clueCollected();
   collision();
   // other players move (position)
-  user.x += user.vx;
-  user.y += user.vy;
-
   for(var i in players){
+    players[i].x += players[i].vx;
+    players[i].y += players[i].vy;
+
     players[i].sprite.x = players[i].x - user.x + window.innerWidth/2;
     players[i].sprite.y = players[i].y - user.y + window.innerHeight/2;
   }
@@ -311,7 +311,7 @@ function setup(){
   state = play;
 
   app.ticker.add(delta => gameLoop(delta));
-  for(int i in bunnies){
+  for(var i in bunnies){
     app.ticker.add(function(delta){
       bunnies[i].rotation += 0.1 * delta;
     });
