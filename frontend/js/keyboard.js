@@ -206,6 +206,7 @@ function loadSprite(){
       "res/rank5.png",
       "res/rank6.png",
       "res/rank7.png",
+      "res/clue.png"
     ])
     .load(setup);
 }
