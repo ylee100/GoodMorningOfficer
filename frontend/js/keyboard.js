@@ -332,8 +332,10 @@ function loadSprite(){
 }
 
 function syncPlayers(newPlayers){
-  for(var i in players){
-    app.stage.removeChild(players[i].sprite);
+  if (user !== undefined) {
+    for(var i in players){
+      app.stage.removeChild(players[i].sprite);
+    }
   }
   players = {};
   players = newPlayers;

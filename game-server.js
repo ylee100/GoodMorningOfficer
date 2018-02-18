@@ -16,7 +16,7 @@ function instantiate_player(username) {
   p.clue = 0;
 
   // Put the new player into dictionary.
-  if (players[username]) {
+  if (players[username] !== undefined) {
     // If username already exists in dict
     return false;
   } else {
