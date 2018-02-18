@@ -107,36 +107,29 @@ function initKey(sprite){
   };
 }
 
-// Assuming rank 1 is opponent and rank7 is the user
 let state;
 
 function setup(){
   // load fininsh for image
-  // JSON from server
+  // TODO: JSON from server
+  players = {
+    "Alice": user
+  };
 
-  // TODO: Other players
+  for(var i in players){
+    players[i].sprite = new PIXI.Sprite(
+      PIXI.loader.resources["res/rank" + players[i].rank + ".png"].texture
+    );
+    players[i].sprite.x = (players[i].x - user.x) + window.innerWidth/2;
+    players[i].sprite.y = (players[i].y - user.y) + window.innerHeight/2;
 
-  for(i in players){
+    players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
+
+    app.stage.addChild(players[i].sprite);
 
   }
-  let rank1 = new PIXI.Sprite(
-    PIXI.loader.resources["res/rank1.png"].texture
-  );
-  // TODO: Input of User
+  initKey(user.sprite);
 
-  rank1.scale = new PIXI.Point(0.15, 0.15);
-  rank7.scale = new PIXI.Point(0.15, 0.15);
-
-  user.x = window.innerWidth/2;
-  rank7.y = window.innerHeight/2;
-
-  rank1.vx = 0;
-  rank1.vy = 0;
-
-  app.stage.addChild(rank1);
-  app.stage.addChild(rank7);
-
-  initKey(rank1);
   state = play;
 
   app.ticker.add(delta => gameLoop(delta));
@@ -155,7 +148,3 @@ function loadSprite(){
     ])
     .load(setup);
 }
-
-
-//test
-loadSprite();

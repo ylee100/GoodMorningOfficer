@@ -1,6 +1,8 @@
 user = {};
 function clickme(){
   createStage();
+  loadSprite();
+
   var me = document.getElementById("userinput").value;
 
   // Initialize the user
