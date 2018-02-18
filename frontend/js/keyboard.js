@@ -90,17 +90,15 @@ function generateClue(player1, player2){
 
 
   p1 = new PIXI.Text(player1);
-  p1.position.set(user.x, user.y+bunny.height);
+  p1.position.set(bunny.x, bunny.y+bunny.height);
   app.stage.addChild(p1);
   p2 = new PIXI.Text(player2);
-  p2.position.set(user.x+p1.width, user.y+bunny.height);
+  p2.position.set(bunny.x+p1.width, bunny.y+bunny.height);
   app.stage.addChild(p2);
 
   // center the sprite's anchor point
 
-  app.ticker.add(function(delta){
-    bunny.rotation += 0.1 * delta;
-  });
+
 }
 
 function clueCollected(){
@@ -313,8 +311,11 @@ function setup(){
   state = play;
 
   app.ticker.add(delta => gameLoop(delta));
-
-
+  for(int i in bunnies){
+    app.ticker.add(function(delta){
+      bunnies[i].rotation += 0.1 * delta;
+    });
+  }
 }
 
 function loadSprite(){
