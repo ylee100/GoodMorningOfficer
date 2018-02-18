@@ -60,6 +60,9 @@ function play(delta){
     players[i].sprite.y = players[i].y - user.y + window.innerHeight/2;
   }
 
+  // Credits Change
+  msg_credit = new PIXI.Text("Money: " + user.credit, style);
+
   // TODO: clue is also moving
 
 
@@ -155,7 +158,7 @@ function setup(){
   });
 
   // prints out the values
-  let msg_credit = new PIXI.Text("Money: " + user.credit, style);
+  msg_credit = new PIXI.Text("Money: " + user.credit, style);
   app.stage.addChild(msg_credit);
   msg_credit.position = "absolute";
   msg_credit.position.set(user.x, user.y);
