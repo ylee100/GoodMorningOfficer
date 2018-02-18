@@ -1,6 +1,8 @@
 // MOVEMENT W, S, A, D
 // User doesn't move but other environment including other players move
 // screen position != global position
+
+bunnies = [];
 function hitTest(r1, r2){
   //Define the variables we'll need to calculate
  let hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
@@ -92,6 +94,7 @@ function generateClue(player1, player2){
   bunny.anchor.set(0.5);
   bunny.position.set(user.x, user.y)
   bunny.scale = new PIXI.Point(0.4, 0.4);
+  bunnies.push(bunny);
   app.stage.addChild(bunny);
 
   app.ticker.add(function(delta){
@@ -162,6 +165,8 @@ function gameLoop(delta){
 }
 
 function play(delta){
+  clueCollected();
+  collision();
   // other players move (position)
   user.x += user.vx;
   user.y += user.vy;
@@ -178,7 +183,10 @@ function play(delta){
   }
 
   // TODO: clue is also moving
-
+  for(var i in bunnies){
+    bunnies[i].x = bunnies[i].x - user.x + window.innerWidth/2;
+    bunnies[i].y = bunnies[i].y - user.y + window.innerHeight/2;
+  }
 
 }
 
