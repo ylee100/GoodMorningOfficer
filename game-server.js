@@ -44,4 +44,14 @@ exports.on_connect = function (socket) {
       console.log('A new user ' + data + ' is created.');
     }
   });
+
+  socket.on('movex', function (data) {
+    players[data.username].vx = data.v;
+    socket.broadcast.emit('movex', data);
+  }
+
+  socket.on('movey', function (data) {
+    players[data.username].vy = data.v;
+    socket.broadcast.emit('movey', data);
+  }
 }

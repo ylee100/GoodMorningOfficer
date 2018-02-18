@@ -74,41 +74,49 @@ function initKey(){
 
   left.press = () => {
     user.vx = -5;
+    request_move_x(-5);
   };
 
   left.release = () => {
     if(!right.isDown){
       user.vx = 0;
+      request_move_x(0);
     }
   };
 
   up.press = () => {
     user.vy = -5;
+    request_move_y(-5);
   };
 
   up.release = () => {
     if(!down.isDown){
       user.vy = 0;
+      request_move_y(0);
     }
   };
 
   right.press = () => {
     user.vx = 5;
+    request_move_x(5);
   };
 
   right.release = () => {
     if(!left.isDown){
       user.vx = 0;
+      request_move_x(0);
     }
   }
 
   down.press = () => {
     user.vy = 5;
+    request_move_y(5);
   };
 
   down.release = () => {
     if(!up.isDown){
       user.vy = 0;
+      request_move_y(0);
     }
   };
 }
