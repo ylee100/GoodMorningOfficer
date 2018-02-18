@@ -104,19 +104,23 @@ function generateClue(player1, player2){
 }
 
 function clueCollected(){
-  if(bunny !== undefined){
-    if(hitTest(user.sprite, bunny)){
-      app.stage.removeChild(bunny);
-      if(p1 !== user.username){
-        user.clue.push(p1);
+    for(var i in bunnies){
+      if(bunnies[i] !== undefined){
+        if(hitTest(user.sprite, bunnies[i])){
+          app.stage.removeChild(bunnies[i]);
+          bunnies[i] = undefined;
+          if(p1 !== user.username){
+            user.clue.push(p1);
+          }
+          if(p2 !== user.username){
+            user.clue.push(p2);
+          }
+          app.stage.removeChild(p1);
+          app.stage.removeChild(p2);
+        }
       }
-      if(p2 !== user.username){
-        user.clue.push(p2);
-      }
-      app.stage.removeChild(p1);
-      app.stage.removeChild(p2);
-    }
   }
+
 }
 
 function keyboard(keyCode){
