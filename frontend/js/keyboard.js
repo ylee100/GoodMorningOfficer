@@ -70,44 +70,44 @@ function initKey(sprite){
 
   left.press = () => {
     sprite.vx = -5;
-    sprite.vy = 0;
+    //sprite.vy = 0;
   };
 
   left.release = () => {
-    if(!right.isDown && sprite.vy === 0){
+    if(!right.isDown){
       sprite.vx = 0;
     }
   };
 
   up.press = () => {
     sprite.vy = -5;
-    sprite.vx = 0;
+    //sprite.vx = 0;
   };
 
   up.release = () => {
-    if(!down.isDown && sprite.vx === 0){
+    if(!down.isDown){
       sprite.vy = 0;
     }
   };
 
   right.press = () => {
     sprite.vx = 5;
-    sprite.vy = 0;
+    //sprite.vy = 0;
   };
 
   right.release = () => {
-    if(!left.isDown && sprite.vy === 0){
+    if(!left.isDown){
       sprite.vx = 0;
     }
   }
 
   down.press = () => {
-    sprite.vx = 0;
+    //sprite.vx = 0;
     sprite.vy = 5;
   };
 
   down.release = () => {
-    if(!up.isDown && sprite.vx === 0){
+    if(!up.isDown){
       sprite.vy = 0;
     }
   };
