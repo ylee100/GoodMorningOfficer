@@ -81,7 +81,7 @@ function collision(){
   // TODO: server update
 }
 function generateClue(player1, player2){
-  var bunny = PIXI.Sprite.fromImage('res/clue.png');
+  var bunny = new Sprite(resources["res/clue.png"].texture);
   bunny.anchor.set(0.5);
   bunny.position.set(user.x, user.y)
   bunny.scale = new PIXI.Point(0.4, 0.4);
@@ -316,11 +316,13 @@ function setup(){
   state = play;
 
   app.ticker.add(delta => gameLoop(delta));
+  /**
   for(var i in bunnies){
     app.ticker.add(function(delta){
       bunnies[i].rotation += 0.1 * delta;
     });
   }
+  */
 }
 
 function loadSprite(){
