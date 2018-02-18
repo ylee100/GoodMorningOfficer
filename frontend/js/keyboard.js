@@ -52,74 +52,69 @@ function gameLoop(delta){
 
 function play(delta){
   // other players move (position)
-    for(var i in players){
-      if(players[i] != user){
-        players[i].sprite.x -= user.sprite.vx;
-        players[i].sprite.y -= user.sprite.vy;
-      }
-    }
+  user.x += user.vx;
+  user.y += user.vy;
 
-    // TODO: clue is also moving
+  for(var i in players){
+    players[i].sprite.x = players[i].x - user.x + window.innerWidth/2;
+    players[i].sprite.y = players[i].y - user.y + window.innerHeight/2;
+  }
+
+  // TODO: clue is also moving
 
 
 }
 
 // PIXI.Sprite sprite
-function initKey(sprite){
+function initKey(){
   let left = keyboard(65),
       up = keyboard(87),
       right = keyboard(68),
       down = keyboard(83);
 
   left.press = () => {
-    sprite.vx = -5;
-    //sprite.vy = 0;
+    user.vx = -5;
   };
 
   left.release = () => {
     if(!right.isDown){
-      sprite.vx = 0;
+      user.vx = 0;
     }
   };
 
   up.press = () => {
-    sprite.vy = -5;
-    //sprite.vx = 0;
+    user.vy = -5;
   };
 
   up.release = () => {
     if(!down.isDown){
-      sprite.vy = 0;
+      user.vy = 0;
     }
   };
 
   right.press = () => {
-    sprite.vx = 5;
-    //sprite.vy = 0;
+    user.vx = 5;
   };
 
   right.release = () => {
     if(!left.isDown){
-      sprite.vx = 0;
+      user.vx = 0;
     }
   }
 
   down.press = () => {
-    //sprite.vx = 0;
-    sprite.vy = 5;
+    user.vy = 5;
   };
 
   down.release = () => {
     if(!up.isDown){
-      sprite.vy = 0;
+      user.vy = 0;
     }
   };
 }
 
 
 let state;
-players = {};
-
 function setup(){
   // load fininsh for image
   // TODO: JSON from server
@@ -151,8 +146,7 @@ function setup(){
   }
 
 
-
-  initKey(user.sprite);
+  initKey();
 
 
  /*
@@ -196,13 +190,15 @@ function loadSprite(){
 }
 
 function syncPlayers(newPlayers){
+  console.log("Sync");
   for(var i in players){
     app.stage.removeChild(players[i].sprite);
   }
-  //players = {};
+  players = {};
   players = newPlayers;
 
   for(var i in players){
+    console.log(players[i].rank);
     players[i].sprite = new PIXI.Sprite(
       PIXI.loader.resources["res/rank" + players[i].rank + ".png"].texture
     );
