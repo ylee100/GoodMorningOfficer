@@ -61,7 +61,7 @@ function play(delta){
   }
 
   // Credits Change
-  msg_credit = new PIXI.Text("Money: " + user.credit, style);
+  msg_credit = new PIXI.Text("Money: " + user.credit);
 
   // TODO: clue is also moving
 
