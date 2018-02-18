@@ -330,14 +330,7 @@ function syncPlayers(newPlayers){
 
     // Find user.
     if (players[i].username === username) {
-      if (!user) {
-        // If user was not defined before,
-        // Start game.
-        user = players[i];
-        loadSprite();
-      } else {
-        user = players[i];
-      }
+      user = players[i];
     }
   }
 }

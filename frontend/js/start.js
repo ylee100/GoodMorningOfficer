@@ -9,4 +9,5 @@ function clickme(){
   request_new_user(username);
 
   createStage();
+  loadSprite();
 }
