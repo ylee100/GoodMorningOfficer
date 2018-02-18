@@ -1,6 +1,117 @@
 // MOVEMENT W, S, A, D
 // User doesn't move but other environment including other players move
 // screen position != global position
+function hitTest(r1, r2){
+  //Define the variables we'll need to calculate
+ let hit, combinedHalfWidths, combinedHalfHeights, vx, vy;
+
+ //hit will determine whether there's a collision
+ hit = false;
+
+ //Find the center points of each sprite
+ r1.centerX = r1.x + r1.width / 2;
+ r1.centerY = r1.y + r1.height / 2;
+ r2.centerX = r2.x + r2.width / 2;
+ r2.centerY = r2.y + r2.height / 2;
+
+ //Find the half-widths and half-heights of each sprite
+ r1.halfWidth = r1.width / 2;
+ r1.halfHeight = r1.height / 2;
+ r2.halfWidth = r2.width / 2;
+ r2.halfHeight = r2.height / 2;
+
+ //Calculate the distance vector between the sprites
+ vx = r1.centerX - r2.centerX;
+ vy = r1.centerY - r2.centerY;
+
+ //Figure out the combined half-widths and half-heights
+ combinedHalfWidths = r1.halfWidth + r2.halfWidth;
+ combinedHalfHeights = r1.halfHeight + r2.halfHeight;
+
+ //Check for a collision on the x axis
+ if (Math.abs(vx) < combinedHalfWidths) {
+
+   //A collision might be occuring. Check for a collision on the y axis
+   if (Math.abs(vy) < combinedHalfHeights) {
+
+     //There's definitely a collision happening
+     hit = true;
+   } else {
+
+     //There's no collision on the y axis
+     hit = false;
+   }
+ } else {
+
+   //There's no collision on the x axis
+   hit = false;
+ }
+
+ //`hit` will be either `true` or `false`
+ return hit;
+}
+
+function collision(){
+  for(var i in players){
+    if(user.username !== players[i].username){
+      if(hitTest(user.sprite, players[i].sprite)){
+        // clue
+        for(var j in user.clue){
+          if(user.clue[j] === players[i].username){
+            players[i].rank--;
+          }
+        }
+
+        // bribery
+        if(user.rank > players[i].rank)){
+          user.credit += 10*(user.rank - players[i].rank);
+          players[i].credit -= 10*(user.rank - players[i].rank);
+        } else if(user.rank < players[i].rank){
+          user.credit -= 10*(user.rank - players[i].rank);
+          players[i].credit += 10*(user.rank - players[i].rank);
+        }
+
+        generateClue(players[i].username, user.username);
+      }
+    }
+  }
+
+  // TODO: server update
+}
+function generateClue(player1, player2){
+  var bunny = PIXI.Sprite.fromImage('res/clue.png')
+
+  p1 = new PIXI.Text(player1);
+  p1.position.set(user.x, user.y+bunny.height);
+  app.stage.addChild(p1);
+  p2 = new PIXI.Text(player2);
+  p1.position.set(user.x+p2.width, user.y+bunny.height);
+  app.stage.addChild(p2);
+
+  // center the sprite's anchor point
+  bunny.anchor.set(0.5);
+  bunny.position.set(user.x, user.y)
+  bunny.scale = new PIXI.Point(0.4, 0.4);
+  app.stage.addChild(bunny);
+
+  app.ticker.add(function(delta){
+    bunny.rotation += 0.1 * delta;
+  });
+}
+
+function clueCollected(){
+  if(hitTest(user.sprite, bunny)){
+    app.stage.removeChild(bunny);
+    if(p1 !== user.username){
+      user.clue.push(p1);
+    }
+    if(p2 !== user.username){
+      user.clue.push(p2);
+    }
+    app.stage.removeChild(p1);
+    app.stage.removeChild(p2);
+  }
+}
 
 function keyboard(keyCode){
   let key = {};
@@ -146,7 +257,7 @@ function setup(){
     fontSize: 64,
     fill: "white"
   });
-  message = new PIXI.Text("The End!", gameOverStyle);
+  message = new PIXI.Text("GameOver", gameOverStyle);
   message.x = 120;
   message.y = app.stage.height / 2 - 32;
   gameOverScene.addChild(message);
@@ -180,32 +291,11 @@ function setup(){
 
   initKey();
 
-
- /*
-  var bunny = PIXI.Sprite.fromImage('res/clue.png')
-
-  // center the sprite's anchor point
-  bunny.anchor.set(0.5);
-
-  // move the sprite to the center of the screen
-  bunny.x = app.screen.width / 2 + 200;
-  bunny.y = app.screen.height / 2;
-
-  bunny.scale = new PIXI.Point(0.4, 0.4);
-
-  app.stage.addChild(bunny);
-
-  */
-
   state = play;
 
-
   app.ticker.add(delta => gameLoop(delta));
-/*
-  app.ticker.add(function(delta){
-    bunny.rotation += 0.1 * delta;
-  });
-  */
+
+
 }
 
 function loadSprite(){

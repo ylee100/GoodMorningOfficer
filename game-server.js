@@ -26,14 +26,13 @@ function instantiate_player(username) {
   }
 }
 
-function decrease_credit(interval){
-
-}
 setInterval(function(){
   for(var i in players){
     players[i].credit--;
   }
 }, 1000);
+
+
 
 
 exports.sync_players = function (io) {
