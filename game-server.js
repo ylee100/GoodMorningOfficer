@@ -37,6 +37,7 @@ setInterval(function(){
 
 
 exports.sync_players = function (io) {
+  console.log('Syncing players.');
   io.local.emit('players', players);
 }
 
@@ -50,11 +51,13 @@ exports.on_connect = function (socket) {
   });
 
   socket.on('movex', function (data) {
+    console.log(data.username + ' is moving at ' + data.v + ' in x direction.');
     players[data.username].vx = data.v;
     socket.broadcast.emit('movex', data);
   });
 
   socket.on('movey', function (data) {
+    console.log(data.username + ' is moving at ' + data.v + ' in y direction.');
     players[data.username].vy = data.v;
     socket.broadcast.emit('movey', data);
   });
