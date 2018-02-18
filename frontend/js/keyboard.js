@@ -244,7 +244,6 @@ function syncPlayers(newPlayers){
         // If user was not defined before,
         // Start game.
         user = players[i];
-        createStage();
         loadSprite();
       } else {
         user = players[i];
