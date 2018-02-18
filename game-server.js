@@ -11,8 +11,7 @@ function instantiate_player(username) {
   p.y = 0;
   p.vx = 0;
   p.vy = 0;
-  p.rank = Math.floor(Math.random*7) + 1;
-  console.log(p.rank);
+  p.rank = Math.floor(Math.random()*7) + 1;
   p.credit = 100;
   p.clue = [];
 
