@@ -311,7 +311,7 @@ function setup(){
   state = play;
 
   app.ticker.add(delta => gameLoop(delta));
-  for(int i in bunnies){
+  for(var i in bunnies){
     app.ticker.add(function(delta){
       bunnies[i].rotation += 0.1 * delta;
     });
