@@ -116,52 +116,14 @@ function initKey(sprite){
   };
 }
 
+
 let state;
+players = {};
+
 function setup(){
   // load fininsh for image
   // TODO: JSON from server
-  players = {
-    "Alice": user,
-    "Bob": {
-      username : "Bob",
-      rank : 1,
-      x : 100,   // global x
-      y : 100,   // global y
-      credit : 100,
-      clue : {}
-    },
-    "Coco": {
-      username : "Bob",
-      rank : 1,
-      x : 800,   // global x
-      y : 100,   // global y
-      credit : 100,
-      clue : {}
-    },
-    "David": {
-      username : "Bob",
-      rank : 1,
-      x : -400,   // global x
-      y : 300,   // global y
-      credit : 100,
-      clue : {}
-    }
-  };
 
-  for(var i in players){
-    players[i].sprite = new PIXI.Sprite(
-      PIXI.loader.resources["res/rank" + players[i].rank + ".png"].texture
-    );
-    players[i].sprite.x = (players[i].x - user.x) + window.innerWidth/2;
-    players[i].sprite.y = (players[i].y - user.y) + window.innerHeight/2;
-
-    players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
-
-    players[i].sprite.vx = 0;
-    players[i].sprite.vy = 0;
-
-    app.stage.addChild(players[i].sprite);
-  }
 
   let style = new PIXI.TextStyle({
     fontFamily: "Arial",
@@ -231,4 +193,20 @@ function loadSprite(){
       "res/rank7.png",
     ])
     .load(setup);
+}
+
+function syncPlayers(newPlayers){
+  for(var i in players){
+    app.stage.removeChild(players[i].sprite);
+  }
+  //players = {};
+  players = newPlayers;
+
+  for(var i in players){
+    players[i].sprite = new PIXI.Sprite(
+      PIXI.loader.resources["res/rank" + players[i].rank + ".png"].texture
+    );
+    players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
+    app.stage.addChild(players[i].sprite);
+  }
 }
