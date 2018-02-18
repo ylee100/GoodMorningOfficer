@@ -9,6 +9,8 @@ function instantiate_player(username) {
   p.username = username;
   p.x = 0;
   p.y = 0;
+  p.vx = 0;
+  p.vy = 0;
   p.rank = 1;
   p.credit = 100;
   p.clue = 0;

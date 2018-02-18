@@ -190,7 +190,6 @@ function loadSprite(){
 }
 
 function syncPlayers(newPlayers){
-  console.log("Sync");
   for(var i in players){
     app.stage.removeChild(players[i].sprite);
   }
@@ -198,11 +197,14 @@ function syncPlayers(newPlayers){
   players = newPlayers;
 
   for(var i in players){
-    console.log(players[i].rank);
+    // Create new sprites.
     players[i].sprite = new PIXI.Sprite(
       PIXI.loader.resources["res/rank" + players[i].rank + ".png"].texture
     );
     players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
     app.stage.addChild(players[i].sprite);
+
+    // Find user.
+    if (players[i].username === username) user = players[i];
   }
 }

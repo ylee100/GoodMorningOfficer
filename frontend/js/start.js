@@ -1,20 +1,12 @@
-user = {};
+user = undefined;
+username = undefined;
 players = {};
 function clickme(){
-  // Initialize the user
-  user.username = document.getElementById("userinput").value;
-  user.rank = 1;
-  user.x = 0;   // global x
-  user.y = 0;   // global y
-  user.vx = 0;
-  user.vy = 0;
-  user.credit = 100;
-  user.clue = {};
+  username = document.getElementById("userinput").value;
 
   document.getElementById("userform").remove();
 
-  request_new_user(user.username);
-  players[user.username] = user;
+  request_new_user(username);
 
   createStage();
   loadSprite();
