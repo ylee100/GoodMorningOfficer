@@ -173,10 +173,10 @@ function play(delta){
   clueCollected();
   collision();
   // other players move (position)
-  user.x += user.vx;
-  user.y += user.vy;
-
   for(var i in players){
+    players[i].x += players[i].vx;
+    players[i].y += players[i].vy;
+
     players[i].sprite.x = players[i].x - user.x + window.innerWidth/2;
     players[i].sprite.y = players[i].y - user.y + window.innerHeight/2;
   }
