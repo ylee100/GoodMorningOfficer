@@ -239,6 +239,9 @@ function initKey(){
 }
 
 function end() {
+  // TODO: SEVER GAME OVER
+  app.stage.removeChild(user.sprite);
+  user = {};
   gameOverScene.visible = true;
 }
 
@@ -327,6 +330,10 @@ function syncPlayers(newPlayers){
     );
     players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
     app.stage.addChild(players[i].sprite);
+
+    nametag = new PIXI.Text(players[i].username);
+    nametag.position.set(players[i].sprite.x, players[i].sprite.y+players[i].sprite.height);
+    app.stage.addChild(nametag);
 
     // Find user.
     if (players[i].username === username) {
