@@ -7,7 +7,4 @@ function clickme(){
   document.getElementById("userform").remove();
 
   request_new_user(username);
-
-  createStage();
-  loadSprite();
 }
