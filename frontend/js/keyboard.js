@@ -331,9 +331,11 @@ function syncPlayers(newPlayers){
     players[i].sprite.scale = new PIXI.Point(0.15, 0.15);
     app.stage.addChild(players[i].sprite);
 
+/**
     nametag = new PIXI.Text(players[i].username);
     nametag.position.set(players[i].sprite.x, players[i].sprite.y+players[i].sprite.height);
     app.stage.addChild(nametag);
+    */
 
     // Find user.
     if (players[i].username === username) {
