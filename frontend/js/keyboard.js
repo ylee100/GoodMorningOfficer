@@ -192,8 +192,10 @@ function play(delta){
 
   // TODO: clue is also moving
   for(var i in bunnies){
-    bunnies[i].x = bunnies[i].x - user.x + window.innerWidth/2;
-    bunnies[i].y = bunnies[i].y - user.y + window.innerHeight/2;
+    if(bunnies[i] !== undefined){
+      bunnies[i].x = bunnies[i].x - user.x + window.innerWidth/2;
+      bunnies[i].y = bunnies[i].y - user.y + window.innerHeight/2;
+    }
   }
 
 }
