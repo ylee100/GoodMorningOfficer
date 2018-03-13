@@ -1,4 +1,4 @@
-var socket = io(window.location.protocol + '//' + window.location.hostname);
+var socket = io();
 
 // Echo log from socket.io server.
 socket.on('log', (data) => console.log(data));
