@@ -1,4 +1,4 @@
-var socket = io('https://good-morning-officer.herokuapp.com');
+var socket = io(window.location.protocol + '//' + window.location.hostname);
 
 // Echo log from socket.io server.
 socket.on('log', (data) => console.log(data));
